@@ -1,0 +1,36 @@
+{% extends 'login_app/layout.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}
+    Register
+{% endblock title %}
+
+{% block content %}
+<br><br>
+    <div class="container">
+        <div class="card">
+            <h5 class="card-header"></h5>
+            <div class="card-body">
+                {% if registered %}
+                    <div class="alert alert-success">Registration Successfull</div>
+                    <br>
+                    <h5><a href="{% url 'login_app:login' %}">Login Now</a></h5>
+                {% else %}
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="col-4">
+                        {{user_form|crispy}}
+                        <br><br>
+                        {{user_info_form|crispy}}
+                        {% csrf_token %}
+                    </div>
+                    <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                </form>
+                
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

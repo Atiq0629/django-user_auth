@@ -1,0 +1,26 @@
+{% extends 'login_app/layout.html' %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block content %}
+<br><br>
+    <div class="container">
+        <div class="card">
+            <h5 class="card-header"></h5>
+            <div class="card-body">
+                {% if user.is_authenticated %}
+                    <p> Hi {{user_basic_info.username}}</p>
+                    <p> Your Email: {{user_basic_info.email}}</p>
+                    <p><a href="{{user_more_info.facebook_id}}">Facebook Profile</a></p>
+                    <img src="/media/{{user_more_info.profile_pic}}" alt="profile_pic" width="200px">
+                {% else %}
+                    <div class="alert alert-Primary">Please<a href="{% url 'login_app:login' %}">Login</a></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
